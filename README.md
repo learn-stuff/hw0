@@ -2,4 +2,6 @@
 
 ## Usage
 
-``` lein test
+```bash
+lein test
+```
