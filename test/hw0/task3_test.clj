@@ -30,3 +30,26 @@
 
     (testing "Set invalid data"
       (is (thrown? IllegalArgumentException (set-price book nil))))))
+
+
+(deftest price-as-string-test
+  (let [book (make-book "2-266-11156-6" 149.95)]
+    (testing "with integer"
+      (let [book (set-price book 149)]
+        (is (= "$149.00" (price->string book)))))
+
+    (testing "with integer"
+      (let [book (set-price book 149.9)]
+        (is (= "$149.90" (price->string book)))))
+
+    (testing "with integer"
+      (let [book (set-price book 149.95)]
+        (is (= "$149.95" (price->string book)))))
+
+    (testing "with integer"
+      (let [book (set-price book 149.953535)]
+        (is (= "$149.95" (price->string book)))))
+
+    (testing "with integer"
+      (let [book (set-price book 149.959595)]
+        (is (= "$149.96" (price->string book)))))))
